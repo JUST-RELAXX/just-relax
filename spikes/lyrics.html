@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurora · Lyrics sync</title>
+  </head>
+  <body class="spike-page">
+    <main class="spike-card wide-card lyrics-card">
+      <a class="back-link" href="/">← All experiments</a>
+      <p class="eyebrow">02 · WORDS IN TIME</p>
+      <h1>Let the words<br /><em>find their place.</em></h1>
+      <p class="intro">
+        Edit an LRC, follow it against a generated tone, or try LRCLIB with a configured contact.
+      </p>
+      <div class="lyrics-columns">
+        <section class="lyrics-inputs">
+          <div class="field-grid">
+            <label>Artist<input id="artist" value="Radiohead" /></label
+            ><label>Song<input id="track" value="No Surprises" /></label>
+          </div>
+          <div class="field-grid">
+            <label>Album<input id="album" value="OK Computer" /></label
+            ><label
+              >Duration (seconds)<input id="duration" type="number" min="1" value="229"
+            /></label>
+          </div>
+          <div class="lyrics-actions">
+            <button class="action-button" id="exact-fetch">Find exact match</button
+            ><button class="secondary-button" id="search-fetch">Search LRCLIB</button>
+          </div>
+          <p class="status network-status" id="network-status">
+            Live lookup waits for AURORA_CONTACT (project URL or email).
+          </p>
+          <label class="textarea-label" for="lrc-source">LRC text · editable</label>
+          <textarea id="lrc-source" spellcheck="false">
+[ar:Demo Artist]
+[ti:Little Signals]
+[offset:0]
+[00:01.00]A note in the quiet
+[00:04.50]A line that finds its time
+[00:08.00]
+[00:10.25]And the room begins to move</textarea>
+          <div class="lyrics-actions">
+            <button class="secondary-button" id="apply-lrc">Load edited LRC</button
+            ><span class="status" id="parse-status">4 timed lines</span>
+          </div>
+        </section>
+        <section class="lyrics-preview">
+          <div class="preview-heading">
+            <span>SYNC PREVIEW</span><span class="sync-badge"><i></i> SOURCE CLOCK</span>
+          </div>
+          <div class="line-list" id="line-list" aria-live="polite"></div>
+          <audio id="tone-player" controls></audio>
+          <p class="preview-note">
+            Click a lyric to seek · blank timestamps create intentional gaps
+          </p>
+          <div id="candidate-list" class="candidate-list"></div>
+        </section>
+      </div>
+      <p class="footnote">
+        ORIGINAL TRACK DURATION IS USED FOR EXACT MATCH · MISSES SHOULD BE CACHED FOR SEVEN DAYS
+      </p>
+    </main>
+    <script type="module" src="/src/lyrics.ts"></script>
+  </body>
+</html>

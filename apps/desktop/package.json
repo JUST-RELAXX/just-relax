@@ -1,0 +1,57 @@
+{
+  "name": "@aurora/desktop",
+  "description": "A local-first Windows music player with live audio effects and synced lyrics.",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "licenses": "node ../../scripts/generate-third-party-notices.mjs",
+    "package:dir": "npm run build && npm run licenses && electron-builder --dir",
+    "dist": "npm run build && npm run licenses && electron-builder --win nsis",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@soundtouchjs/audio-worklet": "2.1.1",
+    "music-metadata": "11.16.1"
+  },
+  "devDependencies": {
+    "@aurora/schema": "0.1.0"
+  },
+  "build": {
+    "appId": "com.aurora.musicplayer",
+    "productName": "Aurora Music Player",
+    "electronVersion": "44.5.1",
+    "directories": {
+      "buildResources": "build",
+      "output": "../../release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "THIRD-PARTY-NOTICES.txt",
+        "to": "THIRD-PARTY-NOTICES.txt"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.svg"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Aurora Music Player",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}

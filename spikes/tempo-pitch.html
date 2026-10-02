@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurora · Tempo & pitch</title>
+  </head>
+  <body class="spike-page">
+    <main class="spike-card wide-card">
+      <a class="back-link" href="/">← All experiments</a>
+      <p class="eyebrow">01 · SOUND TOUCH WORKLET</p>
+      <h1>Three ways to<br /><em>change a song.</em></h1>
+      <p class="intro">
+        Try tempo, pitch, and record-style varispeed on a generated tone or a local audio file.
+      </p>
+      <label class="file-picker"
+        >Choose a local audio file<input id="audio-file" type="file" accept="audio/*"
+      /></label>
+      <section class="mode-switch" aria-label="Processing mode">
+        <button class="mode-button active" data-mode="tempo"><span>01</span> Tempo</button>
+        <button class="mode-button" data-mode="pitch"><span>02</span> Pitch</button>
+        <button class="mode-button" data-mode="varispeed"><span>03</span> Varispeed</button>
+      </section>
+      <section class="control-panel">
+        <div class="control-copy">
+          <span class="control-label" id="control-label">TEMPO</span
+          ><strong id="control-value">1.00×</strong>
+          <p id="control-description">Move faster or slower while keeping the pitch steady.</p>
+        </div>
+        <input
+          id="main-control"
+          type="range"
+          min="0.5"
+          max="2"
+          step="0.01"
+          value="1"
+          aria-label="Tempo"
+        />
+        <div class="range-labels">
+          <span id="range-min">0.50×</span><span id="range-max">2.00×</span>
+        </div>
+      </section>
+      <div class="play-row">
+        <button class="action-button" id="play-button">▶ <span>Start generated tone</span></button
+        ><span class="status" id="status">Ready · no audio loaded</span>
+      </div>
+      <div class="meter-card">
+        <div>
+          <span class="meter-title">WORKLET HEALTH</span
+          ><span class="meter-value" id="metrics">Waiting for playback</span>
+        </div>
+        <div class="meter-bars" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <p class="footnote">LIVE CHANGES USE AUDIOPARAM RAMPS · USE HEADPHONES TO CHECK FOR CLICKS</p>
+    </main>
+    <script type="module" src="/src/tempo-pitch.ts"></script>
+  </body>
+</html>

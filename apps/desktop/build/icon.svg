@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="shell" x1="62" y1="42" x2="448" y2="478" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#292037" />
+      <stop offset="1" stop-color="#10131f" />
+    </linearGradient>
+    <linearGradient id="glow" x1="115" y1="99" x2="384" y2="421" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f0d9ff" />
+      <stop offset=".52" stop-color="#c9a2ed" />
+      <stop offset="1" stop-color="#8fa0ef" />
+    </linearGradient>
+    <radialGradient id="haze" cx="0" cy="0" r="1" gradientTransform="matrix(220 200 -184 202 168 108)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#bf91ed" stop-opacity=".32" />
+      <stop offset="1" stop-color="#bf91ed" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="132" fill="url(#shell)" />
+  <rect x="16" y="16" width="480" height="480" rx="132" fill="url(#haze)" />
+  <rect x="17" y="17" width="478" height="478" rx="131" stroke="#fff" stroke-opacity=".12" stroke-width="2" />
+  <g fill="none" stroke="url(#glow)" stroke-linecap="round" stroke-width="25">
+    <path d="M143 226v60" />
+    <path d="M199 171v170" />
+    <path d="M256 128v256" />
+    <path d="M313 171v170" />
+    <path d="M369 226v60" />
+  </g>
+  <path d="M119 413c41 22 88 34 137 34 49 0 96-12 137-34" fill="none" stroke="#c9a2ed" stroke-linecap="round" stroke-opacity=".32" stroke-width="4" />
+</svg>
