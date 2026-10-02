@@ -20,6 +20,8 @@ export interface PlaybackSnapshot {
   errorMessage: string | null;
   dspMetrics: { underrunCount: number; blockCount: number } | null;
   workletAvailable: boolean | null;
+  effectsAvailable: boolean | null;
+  workletError: string | null;
 }
 
 export interface AudioEngine {
@@ -68,6 +70,8 @@ export class HTMLAudioEngine implements AudioEngine {
   private spatialFrameId: number | null = null;
   private dspMetrics: PlaybackSnapshot['dspMetrics'] = null;
   private workletAvailable: boolean | null = null;
+  private effectsAvailable: boolean | null = null;
+  private workletError: string | null = null;
   private graphReady = false;
   private readonly mediaEvents = [
     'timeupdate',
@@ -102,6 +106,8 @@ export class HTMLAudioEngine implements AudioEngine {
       errorMessage: this.errorMessage,
       dspMetrics: this.dspMetrics,
       workletAvailable: this.workletAvailable,
+      effectsAvailable: this.effectsAvailable,
+      workletError: this.workletError,
     };
   }
 
@@ -238,6 +244,9 @@ export class HTMLAudioEngine implements AudioEngine {
     this.spatialWet = null;
     this.limiter = null;
     this.graphReady = false;
+    this.effectsAvailable = null;
+    this.workletAvailable = null;
+    this.workletError = null;
     this.sourceUrl = '';
     this.listeners.clear();
   }
@@ -263,6 +272,8 @@ export class HTMLAudioEngine implements AudioEngine {
     const AudioContextClass = window.AudioContext;
     if (!AudioContextClass || !this.audio) {
       this.workletAvailable = false;
+      this.effectsAvailable = false;
+      this.workletError = 'Web Audio is unavailable in this app session.';
       this.graphReady = true;
       this.publish();
       return;
@@ -271,8 +282,10 @@ export class HTMLAudioEngine implements AudioEngine {
     let context: AudioContext;
     try {
       context = new AudioContextClass({ latencyHint: 'playback' });
-    } catch {
+    } catch (error) {
       this.workletAvailable = false;
+      this.effectsAvailable = false;
+      this.workletError = error instanceof Error ? error.message : 'Audio could not be started.';
       this.graphReady = true;
       this.publish();
       return;
@@ -281,9 +294,12 @@ export class HTMLAudioEngine implements AudioEngine {
     let mediaSource: MediaElementAudioSourceNode;
     try {
       mediaSource = context.createMediaElementSource(this.audio);
-    } catch {
+    } catch (error) {
       await context.close();
       this.workletAvailable = false;
+      this.effectsAvailable = false;
+      this.workletError =
+        error instanceof Error ? error.message : 'The audio graph could not start.';
       this.graphReady = true;
       this.publish();
       return;
@@ -302,9 +318,13 @@ export class HTMLAudioEngine implements AudioEngine {
         };
         this.publish();
       });
-    } catch {
+    } catch (error) {
       processor?.disconnect();
       processor = null;
+      this.workletError =
+        error instanceof Error
+          ? error.message
+          : 'The pitch and time-stretch worklet failed to load.';
     }
 
     let bitcrusher: AudioWorkletNode | null = null;
@@ -414,6 +434,7 @@ export class HTMLAudioEngine implements AudioEngine {
     this.spatialDry = spatialDry;
     this.spatialWet = spatialWet;
     this.limiter = limiter;
+    this.effectsAvailable = true;
     this.graphReady = true;
     this.applyAllEffects();
     await resume;
@@ -422,12 +443,14 @@ export class HTMLAudioEngine implements AudioEngine {
   }
 
   private applySpeed(): void {
-    const playbackRate =
-      this.speedMode === 'pitch' ||
-      (this.workletAvailable === false && this.speedMode !== 'varispeed')
-        ? 1
-        : this.speedValue;
-    if (this.audio) this.audio.playbackRate = playbackRate;
+    const hasProcessor = this.processor !== null;
+    const playbackRate = this.speedMode === 'pitch' ? 1 : this.speedValue;
+    if (this.audio) {
+      // Let SoundTouch own pitch correction when it is active. If it failed to
+      // load, the browser can still provide pitch-preserving tempo playback.
+      this.audio.preservesPitch = !hasProcessor && this.speedMode === 'tempo';
+      this.audio.playbackRate = playbackRate;
+    }
     if (!this.processor || !this.audioContext) return;
     this.ramp(this.processor.playbackRate, playbackRate);
     this.ramp(this.processor.pitch, this.speedMode === 'varispeed' ? this.speedValue : 1);

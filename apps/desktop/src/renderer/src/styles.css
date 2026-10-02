@@ -11,8 +11,8 @@
   --glass-strong: rgb(255 255 255 / 5.5%);
   --stroke: rgb(255 255 255 / 7%);
   --text-1: #efeff6;
-  --text-2: #a0a1b6;
-  --text-3: #686b80;
+  --text-2: #c2c4d2;
+  --text-3: #a3a6b8;
   --accent: #d0a9ff;
   --accent-2: #8f79d6;
   --radius-s: 10px;
@@ -101,7 +101,7 @@ button:focus-visible {
   width: 245px;
   height: 100%;
   color: #f4f2fa;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.45px;
 }
@@ -130,11 +130,11 @@ button:focus-visible {
 .rack-footnote,
 .transport-empty-pill {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 1.15px;
 }
 .brand-caption {
-  color: #747487;
+  color: #9393a1;
   letter-spacing: 1.05px;
 }
 .top-search {
@@ -144,20 +144,20 @@ button:focus-visible {
   width: 288px;
   height: 34px;
   padding: 0 11px;
-  color: #727487;
+  color: #9294a2;
   border: 1px solid rgb(255 255 255 / 6%);
   border-radius: 10px;
   background: rgb(255 255 255 / 2.4%);
-  font-size: 10px;
+  font-size: 14px;
 }
 .top-search kbd {
   margin-left: auto;
   padding: 2px 5px;
-  color: #85869a;
+  color: #9293a4;
   border: 1px solid rgb(255 255 255 / 8%);
   border-radius: 4px;
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
 }
 .top-search input {
@@ -172,7 +172,7 @@ button:focus-visible {
   font: inherit;
 }
 .top-search input::placeholder {
-  color: #727487;
+  color: #9294a2;
   opacity: 1;
 }
 .top-search:focus-within {
@@ -216,8 +216,8 @@ button:focus-visible {
 }
 .rail-section-label {
   padding: 0 12px 15px;
-  color: #66687c;
-  font-size: 8px;
+  color: #9294a2;
+  font-size: 13px;
   letter-spacing: 1.3px;
 }
 .nav-list {
@@ -232,7 +232,7 @@ button:focus-visible {
   min-height: 43px;
   padding: 0 12px;
   overflow: hidden;
-  color: #898b9e;
+  color: #9293a5;
   border: 1px solid transparent;
   border-radius: 11px;
   background: transparent;
@@ -241,7 +241,7 @@ button:focus-visible {
   transition: 0.22s var(--ease-out);
 }
 .nav-item span:not(.nav-active-glow) {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 .nav-item:hover {
@@ -275,8 +275,8 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #727487;
-  font-size: 8px;
+  color: #9294a2;
+  font-size: 13px;
   letter-spacing: 1px;
 }
 .quiet-dot,
@@ -288,9 +288,9 @@ button:focus-visible {
   box-shadow: 0 0 10px rgb(143 221 169 / 45%);
 }
 .rail-version {
-  color: #55576a;
+  color: #9294a0;
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
 }
 .main-stage {
@@ -324,15 +324,15 @@ button:focus-visible {
 .future-page h1 {
   margin: 14px 0 8px;
   color: #f0edf6;
-  font-size: clamp(32px, 3.2vw, 46px);
+  font-size: clamp(36px, 3.5vw, 50px);
   font-weight: 600;
   letter-spacing: -2.5px;
 }
 .library-page-heading p,
 .future-page > p {
   margin: 0;
-  color: #89899d;
-  font-size: 11px;
+  color: #9393a5;
+  font-size: 14px;
   line-height: 1.8;
 }
 .library-page-heading .primary-button {
@@ -343,7 +343,7 @@ button:focus-visible {
 .library-error {
   margin: -10px 0 18px;
   color: #a8d5bb;
-  font-size: 10px;
+  font-size: 14px;
 }
 .library-error,
 .panel-error {
@@ -367,15 +367,15 @@ button:focus-visible {
 .library-empty h2 {
   margin: 18px 0 7px;
   color: #e4e0eb;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.5px;
 }
 .library-empty p {
   max-width: 330px;
   margin: 0;
-  color: #7f8094;
-  font-size: 10px;
+  color: #9293a4;
+  font-size: 14px;
   line-height: 1.8;
 }
 .library-empty .subtle-button {
@@ -417,10 +417,10 @@ button:focus-visible {
 }
 .library-list-heading {
   min-height: 39px;
-  color: #696b7e;
+  color: #9294a1;
   border-bottom: 1px solid rgb(255 255 255 / 5%);
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 1px;
 }
@@ -453,7 +453,7 @@ button:focus-visible {
   width: 28px;
   height: 28px;
   margin-right: 8px;
-  color: #77798b;
+  color: #9294a2;
   border: 0;
   border-radius: 8px;
   background: transparent;
@@ -478,15 +478,15 @@ button:focus-visible {
   outline: 1px solid currentColor;
 }
 .track-row-index {
-  color: #6b6d80;
+  color: #9294a1;
   font:
-    10px 'DM Mono',
+    14px 'DM Mono',
     monospace;
   text-align: center;
 }
 .track-playing-mark {
   color: #cfafea;
-  font-size: 15px;
+  font-size: 16px;
 }
 .track-row-title {
   display: grid;
@@ -501,24 +501,24 @@ button:focus-visible {
 }
 .track-title-text {
   color: #d8d5e1;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
 }
 .track-file-name {
-  color: #6f7184;
-  font-size: 8px;
+  color: #9294a2;
+  font-size: 13px;
 }
 .track-row-artist {
   overflow: hidden;
-  color: #898a9e;
-  font-size: 9px;
+  color: #9293a5;
+  font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .track-row-duration {
-  color: #77798d;
+  color: #9293a3;
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
   text-align: right;
 }
@@ -539,15 +539,15 @@ button:focus-visible {
 .sound-lab-page > h1 {
   margin: 14px 0 8px;
   color: #f0edf6;
-  font-size: clamp(32px, 3.2vw, 46px);
+  font-size: clamp(36px, 3.5vw, 50px);
   font-weight: 600;
   letter-spacing: -2.5px;
 }
 .sound-lab-intro {
   max-width: 540px;
   margin: 0;
-  color: #89899d;
-  font-size: 11px;
+  color: #9393a5;
+  font-size: 14px;
   line-height: 1.8;
 }
 .sound-lab-card {
@@ -578,18 +578,18 @@ button:focus-visible {
 .sound-lab-heading h2 {
   margin: 0 0 4px;
   color: #e1dce9;
-  font-size: 13px;
+  font-size: 15px;
 }
 .sound-lab-heading p {
   margin: 0;
-  color: #797a8e;
-  font-size: 9px;
+  color: #9293a3;
+  font-size: 14px;
 }
 .sound-lab-readout {
   margin-left: auto;
   color: #e3c8fa;
   font:
-    14px 'DM Mono',
+    16px 'DM Mono',
     monospace;
 }
 .sound-lab-modes {
@@ -604,11 +604,11 @@ button:focus-visible {
 .sound-lab-modes button {
   min-height: 34px;
   flex: 1;
-  color: #858598;
+  color: #9393a3;
   border: 1px solid transparent;
   border-radius: 8px;
   background: transparent;
-  font-size: 9px;
+  font-size: 14px;
   cursor: pointer;
 }
 .sound-lab-modes button.active {
@@ -617,7 +617,7 @@ button:focus-visible {
   background: rgb(179 132 233 / 12%);
 }
 .sound-lab-modes button:disabled {
-  color: #555666;
+  color: #93949e;
   cursor: not-allowed;
 }
 .sound-lab-slider-heading {
@@ -626,26 +626,53 @@ button:focus-visible {
 }
 .sound-lab-slider-heading label {
   color: #d8d4e0;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
 }
 .sound-lab-slider-heading span {
-  color: #797a8e;
-  font-size: 9px;
+  color: #9293a3;
+  font-size: 14px;
 }
 .sound-lab-slider-row {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-top: 17px;
-  color: #77798d;
+  color: #9293a3;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
 }
 .sound-lab-slider-row input {
   min-width: 0;
   flex: 1;
+}
+.sound-lab-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.sound-lab-presets button {
+  min-width: 48px;
+  padding: 7px 9px;
+  color: #9998aa;
+  border: 1px solid rgb(255 255 255 / 7%);
+  border-radius: 7px;
+  background: rgb(255 255 255 / 2%);
+  font:
+    14px 'DM Mono',
+    monospace;
+  cursor: pointer;
+}
+.sound-lab-presets button[aria-pressed='true'] {
+  color: #ead7fb;
+  border-color: rgb(200 157 255 / 28%);
+  background: rgb(179 132 233 / 13%);
+}
+.sound-lab-presets button:disabled {
+  color: #93949e;
+  cursor: not-allowed;
 }
 .sound-lab-reset {
   margin-top: 19px;
@@ -654,7 +681,7 @@ button:focus-visible {
   border: 1px solid rgb(200 159 229 / 14%);
   border-radius: 8px;
   background: rgb(179 132 219 / 5%);
-  font-size: 9px;
+  font-size: 14px;
   cursor: pointer;
 }
 .sound-lab-reset:hover {
@@ -663,9 +690,9 @@ button:focus-visible {
 }
 .sound-lab-metrics {
   margin: 16px 2px;
-  color: #77798d;
+  color: #9293a3;
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
 }
 .effect-rack-heading {
@@ -678,14 +705,14 @@ button:focus-visible {
 .effect-rack-heading h2 {
   margin: 7px 0 0;
   color: #e4e0eb;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.4px;
 }
 .effect-rack-heading > span {
-  color: #686a7d;
+  color: #9294a1;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 0.7px;
 }
@@ -718,7 +745,7 @@ button:focus-visible {
   align-items: center;
   gap: 11px;
   padding: 10px 0;
-  color: #9292a4;
+  color: #9393a4;
   border: 0;
   background: transparent;
   text-align: left;
@@ -726,7 +753,7 @@ button:focus-visible {
 }
 .effect-control-expand > svg {
   flex: 0 0 auto;
-  color: #77788d;
+  color: #9293a3;
   transform: rotate(-90deg);
   transition: transform 0.18s ease;
 }
@@ -740,24 +767,24 @@ button:focus-visible {
 }
 .effect-control-expand strong {
   color: #d6d3df;
-  font-size: 10px;
+  font-size: 14px;
 }
 .effect-control-expand small {
   overflow: hidden;
-  color: #77798d;
-  font-size: 8px;
+  color: #9293a3;
+  font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .effect-power {
   min-width: 47px;
   min-height: 25px;
-  color: #77798b;
+  color: #9294a2;
   border: 1px solid rgb(255 255 255 / 7%);
   border-radius: 7px;
   background: rgb(255 255 255 / 2%);
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   cursor: pointer;
 }
@@ -769,7 +796,7 @@ button:focus-visible {
 .effect-fixed-state {
   color: #84ae94;
   font:
-    7px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 0.6px;
 }
@@ -794,12 +821,12 @@ button:focus-visible {
 }
 .effect-parameter-heading label {
   color: #c2bfce;
-  font-size: 8px;
+  font-size: 13px;
 }
 .effect-parameter-heading span {
   color: #bda1d2;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   white-space: nowrap;
 }
@@ -809,8 +836,8 @@ button:focus-visible {
 }
 .effect-parameter p {
   margin: 0;
-  color: #6f7184;
-  font-size: 7px;
+  color: #9294a2;
+  font-size: 13px;
   line-height: 1.45;
 }
 .welcome-grid {
@@ -831,17 +858,17 @@ button:focus-visible {
   align-items: center;
   gap: 8px;
   color: #b995da;
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 1.5px;
 }
 .eyebrow-sparkle {
   color: #d6b2fb;
-  font-size: 13px;
+  font-size: 15px;
 }
 .welcome-copy h1 {
   margin: 21px 0 16px;
   color: #f4f1f7;
-  font-size: clamp(42px, 4.25vw, 62px);
+  font-size: clamp(48px, 4.8vw, 68px);
   font-weight: 600;
   line-height: 1.06;
   letter-spacing: -3.8px;
@@ -854,7 +881,7 @@ button:focus-visible {
   max-width: 370px;
   margin: 0;
   color: #9595a8;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.9;
 }
 .welcome-actions {
@@ -874,7 +901,7 @@ button:focus-visible {
   border-radius: 11px;
   background: linear-gradient(110deg, #dfc4f6 0%, #bc9dde 100%);
   box-shadow: 0 8px 26px rgb(177 132 212 / 16%);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 800;
   cursor: pointer;
   transition:
@@ -886,17 +913,17 @@ button:focus-visible {
   box-shadow: 0 10px 30px rgb(177 132 212 / 27%);
 }
 .coming-soon {
-  color: #696a7d;
-  font-size: 9px;
+  color: #9393a1;
+  font-size: 14px;
 }
 .welcome-footnote {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 37px;
-  color: #5e6073;
+  color: #9294a0;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 1.1px;
 }
@@ -1014,7 +1041,7 @@ button:focus-visible {
   left: 20px;
   color: rgb(255 248 245 / 81%);
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
   letter-spacing: 1.2px;
 }
@@ -1024,7 +1051,7 @@ button:focus-visible {
   bottom: 51px;
   left: 23px;
   color: #fff1ea;
-  font-size: 29px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 0.96;
   letter-spacing: 2px;
@@ -1032,7 +1059,7 @@ button:focus-visible {
 }
 .art-title em {
   color: #e5cfdc;
-  font-size: 25px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 4px;
@@ -1044,7 +1071,7 @@ button:focus-visible {
   left: 24px;
   color: rgb(255 242 239 / 68%);
   font:
-    7px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 1.6px;
 }
@@ -1080,7 +1107,7 @@ button:focus-visible {
   box-shadow: 0 12px 32px rgb(0 0 0 / 24%);
   backdrop-filter: blur(12px);
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 0.7px;
 }
@@ -1120,9 +1147,9 @@ button:focus-visible {
   position: absolute;
   right: 2%;
   bottom: 1%;
-  color: #666477;
+  color: #9493a0;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
   letter-spacing: 0.9px;
 }
@@ -1139,26 +1166,26 @@ button:focus-visible {
   margin-bottom: 17px;
 }
 .small-eyebrow {
-  color: #737487;
-  font-size: 8px;
+  color: #9393a2;
+  font-size: 13px;
   letter-spacing: 1.25px;
 }
 .section-heading h2 {
   margin: 7px 0 0;
   color: #e3e2ea;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.45px;
 }
 .section-index {
   padding-bottom: 3px;
-  color: #6f7084;
+  color: #9393a2;
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
 }
 .section-index span {
-  color: #444656;
+  color: #92949d;
 }
 .feature-grid {
   display: grid;
@@ -1212,29 +1239,29 @@ button:focus-visible {
   background: rgb(164 211 185 / 8%);
 }
 .feature-number {
-  color: #5f6072;
+  color: #9394a0;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
 }
 .feature-copy h3 {
   margin: 13px 0 4px;
   color: #dedde6;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
 }
 .feature-copy p {
   margin: 0;
-  color: #77798d;
-  font-size: 9px;
+  color: #9293a3;
+  font-size: 14px;
   line-height: 1.6;
 }
 .feature-arrow {
   position: absolute;
   right: 13px;
   bottom: 13px;
-  color: #6e6f81;
-  font-size: 12px;
+  color: #9393a1;
+  font-size: 15px;
 }
 .right-panel {
   display: flex;
@@ -1247,8 +1274,8 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #77788b;
-  font-size: 8px;
+  color: #9393a2;
+  font-size: 13px;
   letter-spacing: 1.2px;
 }
 .live-dot {
@@ -1279,7 +1306,7 @@ button:focus-visible {
 .right-panel > h2 {
   margin: 17px 0 8px;
   color: #e5e2eb;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.42;
   letter-spacing: -0.65px;
@@ -1287,8 +1314,8 @@ button:focus-visible {
 .right-panel > p {
   max-width: 205px;
   margin: 0;
-  color: #828395;
-  font-size: 10px;
+  color: #9293a3;
+  font-size: 14px;
   line-height: 1.8;
 }
 .subtle-button {
@@ -1302,13 +1329,13 @@ button:focus-visible {
   border: 1px solid rgb(200 159 229 / 16%);
   border-radius: 9px;
   background: rgb(179 132 219 / 6%);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
 .subtle-button span {
-  color: #9e7bb8;
-  font-size: 12px;
+  color: #a888bf;
+  font-size: 15px;
 }
 .panel-divider {
   height: 1px;
@@ -1319,13 +1346,13 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #7b7c8e;
-  font-size: 8px;
+  color: #9393a2;
+  font-size: 13px;
   letter-spacing: 1.15px;
 }
 .rack-spark {
   color: #b895d4;
-  font-size: 12px;
+  font-size: 15px;
 }
 .rack-preview {
   display: grid;
@@ -1338,7 +1365,7 @@ button:focus-visible {
   gap: 9px;
   height: 34px;
   color: #9b9cab;
-  font-size: 9px;
+  font-size: 14px;
 }
 .volume-slider,
 .progress-slider {
@@ -1375,9 +1402,9 @@ button:focus-visible {
 }
 .rack-value {
   margin-left: auto;
-  color: #595b6e;
+  color: #9294a0;
   font:
-    9px 'DM Mono',
+    14px 'DM Mono',
     monospace;
 }
 .rack-footnote {
@@ -1385,8 +1412,8 @@ button:focus-visible {
   align-items: center;
   gap: 7px;
   margin-top: auto;
-  color: #65677a;
-  font-size: 8px;
+  color: #9294a1;
+  font-size: 13px;
   letter-spacing: 0.85px;
 }
 .lock-dot {
@@ -1418,7 +1445,7 @@ button:focus-visible {
   height: 38px;
   flex: 0 0 auto;
   place-items: center;
-  color: #877a97;
+  color: #9a90a8;
   border: 1px solid rgb(255 255 255 / 7%);
   border-radius: 10px;
   background: linear-gradient(145deg, #272434, #191b26);
@@ -1431,22 +1458,22 @@ button:focus-visible {
 .transport-meta strong {
   overflow: hidden;
   color: #c6c6d2;
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .transport-meta span {
-  color: #727487;
-  font-size: 8px;
+  color: #9294a2;
+  font-size: 13px;
 }
 .transport-empty-pill {
   margin-left: 7px;
   padding: 5px 7px;
-  color: #626477;
+  color: #9294a1;
   border: 1px solid rgb(255 255 255 / 5%);
   border-radius: 5px;
-  font-size: 7px;
+  font-size: 13px;
   letter-spacing: 0.75px;
 }
 .transport-controls {
@@ -1466,7 +1493,7 @@ button:focus-visible {
   color: #9c9dad;
   border: 0;
   background: transparent;
-  font-size: 24px;
+  font-size: 26px;
 }
 .transport-play {
   display: grid;
@@ -1486,9 +1513,9 @@ button:focus-visible {
   align-items: center;
   justify-content: end;
   gap: 10px;
-  color: #77798b;
+  color: #9294a2;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
 }
 .transport-right .icon-button {
@@ -1511,15 +1538,15 @@ button:focus-visible {
 .lyrics-page-heading h1 {
   margin: 14px 0 8px;
   color: #f0edf6;
-  font-size: clamp(32px, 3.2vw, 46px);
+  font-size: clamp(36px, 3.5vw, 50px);
   font-weight: 600;
   letter-spacing: -2.5px;
 }
 .lyrics-page-heading p,
 .lyrics-card-heading p {
   margin: 0;
-  color: #89899d;
-  font-size: 10px;
+  color: #9393a5;
+  font-size: 14px;
   line-height: 1.8;
 }
 .lyrics-track-pill {
@@ -1547,11 +1574,11 @@ button:focus-visible {
 }
 .lyrics-track-pill strong {
   color: #ddd8e7;
-  font-size: 9px;
+  font-size: 14px;
 }
 .lyrics-track-pill small {
-  color: #808094;
-  font-size: 8px;
+  color: #9393a4;
+  font-size: 13px;
 }
 .lyrics-layout {
   display: grid;
@@ -1585,11 +1612,11 @@ button:focus-visible {
 .lyrics-card-heading h2 {
   margin: 0 0 5px;
   color: #e5e1ec;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 650;
 }
 .lyrics-card-heading p {
-  font-size: 9px;
+  font-size: 14px;
 }
 .secondary-button {
   display: inline-flex;
@@ -1603,7 +1630,7 @@ button:focus-visible {
   border: 1px solid rgb(202 168 232 / 17%);
   border-radius: 9px;
   background: rgb(187 142 222 / 6%);
-  font-size: 9px;
+  font-size: 14px;
   cursor: pointer;
 }
 .secondary-button:hover {
@@ -1621,7 +1648,7 @@ button:focus-visible {
   outline: 0;
   background: rgb(0 0 0 / 15%);
   font:
-    10px/1.8 'DM Mono',
+    14px/1.8 'DM Mono',
     monospace;
 }
 .lyrics-textarea:focus {
@@ -1629,7 +1656,7 @@ button:focus-visible {
   box-shadow: 0 0 0 3px rgb(179 132 219 / 6%);
 }
 .lyrics-textarea::placeholder {
-  color: #66687c;
+  color: #9294a2;
 }
 .lyrics-editor-actions,
 .settings-actions {
@@ -1644,14 +1671,14 @@ button:focus-visible {
   min-height: 34px;
   padding: 0 12px;
   border-radius: 9px;
-  font-size: 9px;
+  font-size: 14px;
 }
 .settings-text-button {
   padding: 5px 3px;
-  color: #92879f;
+  color: #9b90a6;
   border: 0;
   background: transparent;
-  font-size: 9px;
+  font-size: 14px;
   cursor: pointer;
 }
 .settings-text-button:hover {
@@ -1660,8 +1687,8 @@ button:focus-visible {
 .lyrics-status {
   min-height: 16px;
   margin: 9px 0 0;
-  color: #9291a5;
-  font-size: 9px;
+  color: #9393a6;
+  font-size: 14px;
   line-height: 1.6;
 }
 .lyrics-candidates {
@@ -1699,12 +1726,12 @@ button:focus-visible {
   white-space: nowrap;
 }
 .lyrics-candidate strong {
-  font-size: 9px;
+  font-size: 14px;
 }
 .lyrics-candidate small,
 .candidate-kind {
-  color: #808094;
-  font-size: 8px;
+  color: #9393a4;
+  font-size: 13px;
 }
 .candidate-kind {
   flex: 0 0 auto;
@@ -1726,12 +1753,12 @@ button:focus-visible {
   align-items: baseline;
   gap: 12px;
   padding: 9px 8px;
-  color: #8e8ea3;
+  color: #9393a7;
   border: 0;
   border-radius: 7px;
   background: transparent;
   text-align: left;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.65;
   cursor: pointer;
   transition:
@@ -1749,16 +1776,16 @@ button:focus-visible {
 }
 .lyric-timestamp {
   flex: 0 0 35px;
-  color: #66687c;
+  color: #9294a2;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
 }
 .plain-lyric-line {
   margin: 0;
   padding: 5px 8px;
   color: #c3becd;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .lyrics-view-empty {
@@ -1766,8 +1793,8 @@ button:focus-visible {
   height: 100%;
   min-height: 190px;
   place-items: center;
-  color: #747588;
-  font-size: 10px;
+  color: #9393a2;
+  font-size: 14px;
   text-align: center;
 }
 .lyrics-empty {
@@ -1776,17 +1803,17 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #818296;
+  color: #9293a4;
   text-align: center;
 }
 .lyrics-empty h2 {
   margin: 18px 0 7px;
   color: #e4e0eb;
-  font-size: 16px;
+  font-size: 20px;
 }
 .lyrics-empty p {
   margin: 0;
-  font-size: 10px;
+  font-size: 14px;
 }
 .modal-backdrop {
   position: fixed;
@@ -1816,7 +1843,7 @@ button:focus-visible {
 .settings-dialog-heading h2 {
   margin: 10px 0 0;
   color: #f0edf6;
-  font-size: 24px;
+  font-size: 26px;
   letter-spacing: -1px;
 }
 .settings-section {
@@ -1826,12 +1853,12 @@ button:focus-visible {
 .settings-section h3 {
   margin: 0 0 7px;
   color: #dcd7e5;
-  font-size: 11px;
+  font-size: 14px;
 }
 .settings-section > p {
   margin: 0;
-  color: #8c8c9f;
-  font-size: 9px;
+  color: #9393a4;
+  font-size: 14px;
   line-height: 1.8;
 }
 .settings-field {
@@ -1839,7 +1866,7 @@ button:focus-visible {
   gap: 7px;
   margin-top: 15px;
   color: #b9b4c4;
-  font-size: 9px;
+  font-size: 14px;
 }
 .settings-field input {
   width: 100%;
@@ -1851,14 +1878,14 @@ button:focus-visible {
   outline: 0;
   background: rgb(255 255 255 / 3%);
   font:
-    10px 'Manrope',
+    14px 'Manrope',
     sans-serif;
 }
 .settings-field input:focus {
   border-color: rgb(200 159 229 / 36%);
 }
 .settings-field input::placeholder {
-  color: #686a7d;
+  color: #9294a1;
 }
 .settings-status {
   margin-top: 10px !important;
@@ -1868,9 +1895,9 @@ button:focus-visible {
   padding-bottom: 11px;
 }
 .settings-version {
-  color: #66687b;
+  color: #9294a1;
   font:
-    8px 'DM Mono',
+    13px 'DM Mono',
     monospace;
 }
 

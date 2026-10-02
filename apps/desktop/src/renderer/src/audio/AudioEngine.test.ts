@@ -45,6 +45,7 @@ class MockMediaElement {
   ended = false;
   volume = 1;
   playbackRate = 1;
+  preservesPitch = true;
   src = '';
   preload = '';
   crossOrigin: string | null = null;
@@ -264,9 +265,11 @@ describe('HTMLAudioEngine', () => {
     expect(engine.snapshot.dspMetrics).toBeNull();
     expect(engine.snapshot.workletAvailable).toBe(false);
     engine.setSpeed('tempo', 1.5);
-    expect(media.playbackRate).toBe(1);
+    expect(media.playbackRate).toBe(1.5);
+    expect(media.preservesPitch).toBe(true);
     engine.setSpeed('varispeed', 1.5);
     expect(media.playbackRate).toBe(1.5);
+    expect(media.preservesPitch).toBe(false);
   });
 
   it('keeps a requested seek before media metadata arrives', async () => {

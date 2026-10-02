@@ -1,5 +1,12 @@
 # Aurora progress
 
+## Update — audio behavior hardening (2026-10-02)
+
+- If SoundTouch fails to load, tempo now uses the browser's pitch-preserving media-rate control and varispeed remains available. Independent pitch shifting stays disabled until the SoundTouch worklet is ready.
+- The Lab now shows the audio startup error instead of failing silently, and disables effect controls if the Web Audio graph itself cannot start.
+- Added one-tap tempo, pitch, and varispeed presets alongside the continuous controls. Moving an effect parameter automatically enables that effect, so changing a control cannot appear to do nothing because its bypass switch was still off.
+- Typecheck, lint, unpacked Windows packaging, and the x64 installer build passed after these changes. Real-track listening and the packaged worklet startup path still need a hands-on check.
+
 ## Milestone 0 — spikes and scaffold
 
 ### Step A — plan review
@@ -85,7 +92,7 @@ The desktop renderer does not receive file paths. It asks the main process to op
 - [x] Add live tempo, pitch-shift, and varispeed controls with reset and a visible worklet underrun counter.
 - [ ] Listen to real tracks at normal, slow, fast, and pitch-shifted settings; stress longer playback on target Windows hardware.
 
-SoundTouch is now in the shipping renderer path at the same pinned 2.1.1 MPL-2.0 version used in the spike. The processor URL is emitted through Vite's asset pipeline. If worklet registration fails, the graph falls back to direct media playback so the file remains usable; live effects then remain unavailable for that session.
+SoundTouch is in the shipping renderer path at the pinned 2.1.1 MPL-2.0 version used in the spike. The processor URL is emitted through Vite's asset pipeline. If worklet registration fails, tempo falls back to pitch-preserving browser playback, varispeed remains available, and independent pitch shift is disabled. The Lab displays the registration error for diagnosis. Other effects remain available when the Web Audio graph starts successfully.
 
 ## Milestone 3 — effects rack
 
@@ -108,7 +115,7 @@ Lyrics never trigger a background request. The Electron main process sends the c
 
 ## Milestone 5 — Windows packaging and license readiness
 
-- [x] Pin the desktop toolchain, add an app identity and branded vector icon, and configure a per-user x64 NSIS installer.
+- [x] Pin the desktop toolchain, add an app identity and alr branded vector icon, and configure a per-user x64 NSIS installer.
 - [x] Add repeatable `npm run dist` and `npm run package:dir` entry points.
 - [x] Generate third-party notices from the locked runtime/bundled dependency graph and include them in the packaged app; retain Electron and Chromium's supplied notices.
 - [x] Produce an unpacked Windows x64 application bundle.

@@ -70,6 +70,8 @@ const emptyPlayback: PlaybackSnapshot = {
   errorMessage: null,
   dspMetrics: null,
   workletAvailable: null,
+  effectsAvailable: null,
+  workletError: null,
 };
 
 type SavedLyricsKind = 'synced' | 'plain' | 'instrumental';
@@ -519,10 +521,13 @@ export function App() {
 
   const changeEffectParameter = (effectId: EffectId, parameterId: string, value: number): void => {
     engine.setEffectParameter(effectId, parameterId, value);
+    const shouldEnable = !effectSettings[effectId].enabled;
+    if (shouldEnable) engine.setEffectEnabled(effectId, true);
     setEffectSettings((current) => ({
       ...current,
       [effectId]: {
         ...current[effectId],
+        enabled: current[effectId].enabled || shouldEnable,
         params: { ...current[effectId].params, [parameterId]: value },
       },
     }));
@@ -531,6 +536,12 @@ export function App() {
   const changeSpeedValue = (value: number): void => {
     setSpeedValue(value);
     engine.setSpeed(speedMode, value);
+  };
+
+  const applySpeedPreset = (mode: SpeedMode, value: number): void => {
+    setSpeedMode(mode);
+    setSpeedValue(value);
+    engine.setSpeed(mode, value);
   };
 
   const togglePlayback = async (): Promise<void> => {
@@ -756,9 +767,12 @@ export function App() {
               value={speedValue}
               metrics={playback.dspMetrics}
               workletAvailable={playback.workletAvailable}
+              effectsAvailable={playback.effectsAvailable}
+              workletError={playback.workletError}
               effectSettings={effectSettings}
               onModeChange={changeSpeedMode}
               onValueChange={changeSpeedValue}
+              onPresetChange={applySpeedPreset}
               onEffectToggle={changeEffectEnabled}
               onEffectParameter={changeEffectParameter}
             />
@@ -1260,9 +1274,12 @@ function SoundLabPage({
   value,
   metrics,
   workletAvailable,
+  effectsAvailable,
+  workletError,
   effectSettings,
   onModeChange,
   onValueChange,
+  onPresetChange,
   onEffectToggle,
   onEffectParameter,
 }: {
@@ -1270,9 +1287,12 @@ function SoundLabPage({
   value: number;
   metrics: PlaybackSnapshot['dspMetrics'];
   workletAvailable: boolean | null;
+  effectsAvailable: boolean | null;
+  workletError: string | null;
   effectSettings: EffectSettings;
   onModeChange: (mode: SpeedMode) => void;
   onValueChange: (value: number) => void;
+  onPresetChange: (mode: SpeedMode, value: number) => void;
   onEffectToggle: (effectId: EffectId, enabled: boolean) => void;
   onEffectParameter: (effectId: EffectId, parameterId: string, value: number) => void;
 }) {
@@ -1304,6 +1324,12 @@ function SoundLabPage({
     },
   };
   const activeControl = controls[mode];
+  const presets =
+    mode === 'pitch'
+      ? [-12, -7, -3, 0, 3, 7, 12]
+      : mode === 'tempo'
+        ? [0.5, 0.75, 0.9, 1, 1.1, 1.25, 1.5, 2]
+        : [0.5, 0.75, 0.9, 1, 1.1, 1.25, 1.5, 2];
   const valueLabel =
     mode === 'pitch' ? `${value > 0 ? '+' : ''}${value.toFixed(1)} st` : `${value.toFixed(2)}×`;
 
@@ -1312,7 +1338,8 @@ function SoundLabPage({
       <div className="eyebrow small-eyebrow">A LITTLE ROOM TO EXPERIMENT</div>
       <h1 id="sound-lab-title">Shape the sound.</h1>
       <p className="sound-lab-intro">
-        Adjust the music as it plays. The player clock stays tied to the original track for seeking
+        Adjust the music as it plays. Moving an effect control turns that effect on; toggle it off
+        whenever you want to compare. The player clock stays tied to the original track for seeking
         and lyrics.
       </p>
       <div className="sound-lab-card">
@@ -1333,7 +1360,7 @@ function SoundLabPage({
               key={entry}
               type="button"
               aria-pressed={mode === entry}
-              disabled={workletAvailable === false && entry !== 'varispeed'}
+              disabled={workletAvailable === false && entry === 'pitch'}
               onClick={() => onModeChange(entry)}
             >
               {controls[entry].label}
@@ -1353,11 +1380,32 @@ function SoundLabPage({
             max={activeControl.max}
             step={activeControl.step}
             value={value}
-            disabled={workletAvailable === false && mode !== 'varispeed'}
+            disabled={workletAvailable === false && mode === 'pitch'}
             onChange={(event) => onValueChange(Number(event.currentTarget.value))}
             aria-valuetext={valueLabel}
           />
           <span>{mode === 'pitch' ? '+12 st' : '2.00×'}</span>
+        </div>
+        <div
+          className="sound-lab-presets"
+          role="group"
+          aria-label={`${activeControl.label} presets`}
+        >
+          {presets.map((preset) => {
+            const presetLabel =
+              mode === 'pitch' ? `${preset > 0 ? '+' : ''}${preset} st` : `${preset}×`;
+            return (
+              <button
+                key={preset}
+                type="button"
+                aria-pressed={Math.abs(value - preset) < 0.005}
+                disabled={workletAvailable === false && mode === 'pitch'}
+                onClick={() => onPresetChange(mode, preset)}
+              >
+                {presetLabel}
+              </button>
+            );
+          })}
         </div>
         <button
           className="sound-lab-reset"
@@ -1385,6 +1433,7 @@ function SoundLabPage({
               description={effect.description}
               bypassable={effect.bypassable}
               state={effectSettings[effect.id]}
+              disabled={effectsAvailable === false}
               parameters={effect.params}
               expanded={expandedEffect === effect.id}
               onExpand={() =>
@@ -1398,12 +1447,19 @@ function SoundLabPage({
           ))}
       </div>
       <p className="sound-lab-metrics" role="status">
-        {workletAvailable === false
-          ? 'The time-stretch worklet is unavailable. Regular playback still works; tempo and pitch controls need AudioWorklet support.'
-          : metrics
-            ? `Audio worklet: ${metrics.underrunCount} underruns across ${metrics.blockCount.toLocaleString()} render blocks.`
-            : 'Audio worklet status appears after playback starts.'}
+        {effectsAvailable === false
+          ? `Audio effects could not start. Tempo still uses the built-in player control. ${workletError ?? ''}`
+          : workletAvailable === false
+            ? `Pitch shifting is unavailable, but tempo still works with pitch preservation. Varispeed also works. ${workletError ?? ''}`
+            : metrics
+              ? `Audio processing is active: ${metrics.underrunCount} underruns across ${metrics.blockCount.toLocaleString()} render blocks.`
+              : 'Audio processing status appears after playback starts.'}
       </p>
+      {effectsAvailable === false && (
+        <p className="sound-lab-metrics" role="alert">
+          Effect controls are unavailable until the audio graph starts successfully.
+        </p>
+      )}
     </section>
   );
 }
@@ -1414,6 +1470,7 @@ function EffectControlCard({
   description,
   bypassable,
   state,
+  disabled,
   parameters,
   expanded,
   onExpand,
@@ -1425,6 +1482,7 @@ function EffectControlCard({
   description: string;
   bypassable: boolean;
   state: EffectSettings[EffectId];
+  disabled: boolean;
   parameters: (typeof effectDefinitions)[number]['params'];
   expanded: boolean;
   onExpand: () => void;
@@ -1438,6 +1496,7 @@ function EffectControlCard({
           className="effect-control-expand"
           type="button"
           aria-expanded={expanded}
+          disabled={disabled}
           onClick={onExpand}
         >
           <ChevronDown size={15} className={expanded ? 'expanded' : ''} />
@@ -1453,6 +1512,7 @@ function EffectControlCard({
             role="switch"
             aria-checked={state.enabled}
             aria-label={`${label} ${state.enabled ? 'on' : 'off'}`}
+            disabled={disabled}
             onClick={() => onToggle(!state.enabled)}
           >
             {state.enabled ? 'On' : 'Off'}
@@ -1484,6 +1544,7 @@ function EffectControlCard({
                   max={parameter.max}
                   step={parameter.step ?? 0.01}
                   value={currentValue}
+                  disabled={disabled}
                   onChange={(event) => onParameter(parameter.id, Number(event.currentTarget.value))}
                   aria-valuetext={valueText}
                 />
